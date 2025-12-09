@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class HeroSection extends Model
+{
+    protected $fillable = [
+        'page',
+        'title',
+        'subtitle',
+        'cta_text',
+        'cta_url',
+        'background_image',
+        'is_active',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
+    public function scopeForPage($query, $page)
+    {
+        return $query->where('page', $page)->where('is_active', true);
+    }
+}

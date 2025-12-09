@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="EnergyNgen delivers advanced engineering, strategy, and energy transition support across Oil & Gas, CCS, and future energy systems." />
+    <meta name="keywords" content="energy engineering, oil and gas, carbon capture storage, renewable energy, energy consulting" />
+    <meta name="author" content="EnergyNgen" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="@yield('title', 'EnergyNgen - Next Generation Energy Engineering Solutions')" />
+    <meta property="og:description" content="EnergyNgen delivers advanced engineering, strategy, and energy transition support across Oil & Gas, CCS, and future energy systems." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#015989" />
+    <title>@yield('title', 'EnergyNgen - Next Generation Energy Engineering Solutions')</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+    @include('components.navigation')
+
+    @yield('content')
+
+    @include('components.footer')
+</body>
+</html>
