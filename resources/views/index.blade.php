@@ -4,9 +4,14 @@
 
 @section('content')
     <!-- HERO SECTION -->
+    @if ($hero)
     <section class="hero">
         <div class="hero-bg">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1629792921074-1ec53065b222?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBlbmVyZ3klMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzY1MTM5NjE4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Energy Architecture" />
+            @if ($hero->background_image)
+                <img loading="lazy" src="{{ \Illuminate\Support\Facades\Storage::url($hero->background_image) }}" alt="{{ $hero->title }}" />
+            @else
+                <img loading="lazy" src="https://images.unsplash.com/photo-1629792921074-1ec53065b222?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBlbmVyZ3klMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzY1MTM5NjE4fDA&ixlib=rb-4.0&q=80&w=1080" alt="Energy Architecture" />
+            @endif
         </div>
         <div class="hero-overlay"></div>
 
@@ -19,16 +24,21 @@
         </div>
 
         <div class="hero-content">
+            @if ($hero->badge_text)
             <div class="hero-badge">
-                <span>ENGINEERING THE FUTURE</span>
+                <span>{{ $hero->badge_text }}</span>
             </div>
-            <h1>{{ $hero->title ?? 'Next Generation Energy Engineering Solutions' }}</h1>
-            <p>{{ $hero->subtitle ?? 'Delivering advanced engineering, strategy, and energy transition support across Oil & Gas, CCS, and future energy systems.' }}</p>
-            <a href="{{ $hero->cta_url ?? '#capabilities' }}" class="hero-cta">{{ $hero->cta_text ?? 'Discover Our Capabilities' }}</a>
+            @endif
+            <h1>{{ $hero->title }}</h1>
+            <p>{{ $hero->subtitle }}</p>
+            @if ($hero->cta_text && $hero->cta_url)
+            <a href="{{ $hero->cta_url }}" class="hero-cta">{{ $hero->cta_text }}</a>
+            @endif
         </div>
 
         <div class="hero-line"></div>
     </section>
+    @endif
 
 
     <!-- ABOUT SECTION -->
@@ -121,7 +131,7 @@
             <p>Let's discuss how our expertise can support your next energy project.</p>
 
             <div class="contact-buttons">
-                <a href="mailto:{{ $settings['contact_email'] ?? 'contact@energyngen.co.uk' }}" class="contact-btn contact-btn-primary">Contact Our Team</a>
+                <a href="mailto:{{ $settings['contact_email'] ?? 'contact@energyngen.com' }}" class="contact-btn contact-btn-primary">Contact Our Team</a>
                 <a href="#projects" class="contact-btn contact-btn-secondary">View Our Work</a>
             </div>
         </div>

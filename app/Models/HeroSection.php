@@ -8,6 +8,7 @@ class HeroSection extends Model
 {
     protected $fillable = [
         'page',
+        'badge_text',
         'title',
         'subtitle',
         'cta_text',

@@ -16,7 +16,7 @@ class SiteSettingSeeder extends Seeder
         $settings = [
             [
                 'key' => 'contact_email',
-                'value' => 'contact@energyngen.co.uk',
+                'value' => 'contact@energyngen.com',
                 'type' => 'email',
                 'group' => 'contact',
             ],

@@ -5,8 +5,16 @@
 @section('content')
     <div style="padding-top: 3rem;"></div>
     <!-- HERO SECTION -->
-    <section class="projects-hero">
-        <div class="hero-geometric">
+    @if ($hero)
+    <section class="projects-hero" @if ($hero->background_image) style="background-image: url('{{ \Illuminate\Support\Facades\Storage::url($hero->background_image) }}')" @endif>
+        @if ($hero->background_image)
+        <div class="hero-bg" style="position: absolute; inset: 0; z-index: 0;">
+            <img loading="lazy" src="{{ \Illuminate\Support\Facades\Storage::url($hero->background_image) }}" alt="{{ $hero->title }}" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+        @endif
+        <div class="hero-overlay" style="position: absolute; inset: 0; z-index: 1;"></div>
+
+        <div class="hero-geometric" style="position: absolute; inset: 0; z-index: 2;">
             <div class="box-1"></div>
             <div class="box-2"></div>
             <div class="dot-1"></div>
@@ -14,14 +22,17 @@
             <div class="dot-3"></div>
         </div>
 
-        <div class="hero-content">
+        <div class="hero-content" style="position: relative; z-index: 10;">
+            @if ($hero->badge_text)
             <div class="hero-badge">
-                <span>OUR WORK</span>
+                <span>{{ $hero->badge_text }}</span>
             </div>
-            <h1>{{ $hero->title ?? 'Selected Projects' }}</h1>
-            <p>{{ $hero->subtitle ?? 'Showcasing our most impactful energy engineering solutions' }}</p>
+            @endif
+            <h1>{{ $hero->title }}</h1>
+            <p>{{ $hero->subtitle }}</p>
         </div>
     </section>
+    @endif
 
     <!-- PROJECTS SECTION -->
     <section class="projects-page" id="projects">
@@ -72,7 +83,7 @@
             <p>Let's discuss how our expertise can support your next energy project.</p>
 
             <div class="contact-buttons">
-                <a href="mailto:{{ $settings['contact_email'] ?? 'contact@energyngen.co.uk' }}" class="contact-btn contact-btn-primary">Contact Our Team</a>
+                <a href="mailto:{{ $settings['contact_email'] ?? 'contact@energyngen.com' }}" class="contact-btn contact-btn-primary">Contact Our Team</a>
                 <a href="{{ route('home') }}" class="contact-btn contact-btn-secondary">Back to Home</a>
             </div>
         </div>
