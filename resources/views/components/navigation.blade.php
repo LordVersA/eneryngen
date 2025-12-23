@@ -3,7 +3,10 @@
     <div class="nav-container">
         <a href="/" class="logo">
             <img src="/logo.png" alt="EnergyNgen" class="logo-icon" width="32" height="32">
-            <span class="tracking-wide">EnergyNgen</span>
+            <div class="logo-text">
+                <span class="tracking-wide">EnergyNgen Ltd</span>
+                <span class="logo-tagline">Next Generation Energy Solutions</span>
+            </div>
             <div class="logo-dot"></div>
         </a>
 

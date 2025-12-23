@@ -101,7 +101,7 @@ p {
     align-items: center;
     gap: 0.75rem;
     letter-spacing: 0.025em;
-    color: #00b3c1;
+    color: #006276;
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -159,6 +159,20 @@ p {
     height: 0.25rem;
     background-color: #00d4e6;
     margin-left: 0.5rem;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.logo-tagline {
+    font-size: 0.625rem;
+    font-weight: 400;
+    opacity: 0.7;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
 }
 
 /* Mobile Menu Button */
@@ -1325,8 +1339,19 @@ footer::after {
 }
 
 .footer-col:first-child .logo {
-    color: white;
+    color: #006276;
     margin-bottom: 1.5rem;
+    background-color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    width: fit-content;
+    opacity: 1;
+}
+
+.footer-col:first-child .logo:hover {
+    color: #00b3c1;
+    background-color: white;
+    opacity: 1;
 }
 
 .footer-col:first-child .logo .logo-icon {

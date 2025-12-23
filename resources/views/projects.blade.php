@@ -82,10 +82,7 @@
             <h2>Partner with us to engineer the energy systems of tomorrow</h2>
             <p>Let's discuss how our expertise can support your next energy project.</p>
 
-            <div class="contact-buttons">
-                <a href="mailto:{{ $settings['contact_email'] ?? 'contact@energyngen.com' }}" class="contact-btn contact-btn-primary">Contact Our Team</a>
-                <a href="{{ route('home') }}" class="contact-btn contact-btn-secondary">Back to Home</a>
-            </div>
+            <x-contact-form />
         </div>
     </section>
 @endsection

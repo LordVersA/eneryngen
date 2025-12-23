@@ -73,10 +73,7 @@
             <h2>Ready to discuss your energy needs?</h2>
             <p>Let's explore how our services can help your organization achieve its goals.</p>
 
-            <div class="contact-buttons">
-                <a href="mailto:{{ $settings['contact_email'] ?? 'contact@energyngen.com' }}" class="contact-btn contact-btn-primary">Contact Our Team</a>
-                <a href="{{ route('home') }}" class="contact-btn contact-btn-secondary">Back to Home</a>
-            </div>
+            <x-contact-form />
         </div>
     </section>
 @endsection
