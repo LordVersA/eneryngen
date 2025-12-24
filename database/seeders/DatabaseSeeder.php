@@ -30,6 +30,11 @@ class DatabaseSeeder extends Seeder
             StatSeeder::class,
             HeroSectionSeeder::class,
             SiteSettingSeeder::class,
+            TechnicalSupportTileSeeder::class,
+            ServiceCardSeeder::class,
+            ExcellenceItemSeeder::class,
+            MapLocationSeeder::class,
+            AboutSectionSeeder::class,
         ]);
     }
 }

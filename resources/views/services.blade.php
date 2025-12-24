@@ -6,10 +6,14 @@
     <div style="padding-top: 3rem;"></div>
     <!-- HERO SECTION -->
     @if ($hero)
-    <section class="projects-hero" @if ($hero->background_image) style="background-image: url('{{ \Illuminate\Support\Facades\Storage::url($hero->background_image) }}')" @endif>
+    <section class="projects-hero" @if ($hero->background_image) style="background-image: url('{{ str_starts_with($hero->background_image, 'http') ? $hero->background_image : \Illuminate\Support\Facades\Storage::url($hero->background_image) }}')" @endif>
         @if ($hero->background_image)
         <div class="hero-bg" style="position: absolute; inset: 0; z-index: 0;">
-            <img loading="lazy" src="{{ \Illuminate\Support\Facades\Storage::url($hero->background_image) }}" alt="{{ $hero->title }}" style="width: 100%; height: 100%; object-fit: cover;" />
+            @if (str_starts_with($hero->background_image, 'http'))
+                <img loading="lazy" src="{{ $hero->background_image }}" alt="{{ $hero->title }}" style="width: 100%; height: 100%; object-fit: cover;" />
+            @else
+                <img loading="lazy" src="{{ \Illuminate\Support\Facades\Storage::url($hero->background_image) }}" alt="{{ $hero->title }}" style="width: 100%; height: 100%; object-fit: cover;" />
+            @endif
         </div>
         @endif
         <div class="hero-overlay" style="position: absolute; inset: 0; z-index: 1;"></div>

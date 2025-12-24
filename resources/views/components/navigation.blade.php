@@ -5,7 +5,6 @@
             <img src="/logo.png" alt="EnergyNgen" class="logo-icon" width="32" height="32">
             <div class="logo-text">
                 <span class="tracking-wide">EnergyNgen Ltd</span>
-                <span class="logo-tagline">Next Generation Energy Solutions</span>
             </div>
             <div class="logo-dot"></div>
         </a>
@@ -19,10 +18,9 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="/services">Services</a></li>
-            <li><a href="{{ route('home') }}#about">About</a></li>
-            <li><a href="{{ route('home') }}#industries">Industries</a></li>
+            <li><a href="{{ route('home') }}#about" class="smooth-scroll">About</a></li>
             <li><a href="/projects">Projects</a></li>
-            <li><a href="#contact" class="nav-btn">Contact</a></li>
+            <li><a href="#contact" class="nav-btn smooth-scroll">Contact</a></li>
         </ul>
     </div>
 </nav>

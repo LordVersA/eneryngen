@@ -1,4 +1,7 @@
 import './bootstrap';
+import { initCarousels } from './modules/carousel';
+import { initGlobalReachMap } from './modules/googleMaps';
+import { initAnimations } from './modules/animations';
 
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
@@ -31,4 +34,50 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Smooth scroll for links with hash that go to the same page
+    document.querySelectorAll('a.smooth-scroll').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            const url = new URL(href, window.location.origin);
+
+            // Check if the link is to the current page with a hash
+            if (url.pathname === window.location.pathname && url.hash) {
+                e.preventDefault();
+                const targetId = url.hash.substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // Initialize new features
+    initCarousels();
+    initGlobalReachMap();
+    initAnimations();
 });

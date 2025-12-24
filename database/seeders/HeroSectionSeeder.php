@@ -16,12 +16,14 @@ class HeroSectionSeeder extends Seeder
         $heroes = [
             [
                 'page' => 'home',
-                'badge_text' => 'INNOVATION IN ENERGY',
-                'title' => 'Next Generation Energy Engineering Solutions',
-                'subtitle' => 'Delivering advanced engineering, strategy, and energy transition support across Oil & Gas, CCS, and future energy systems.',
-                'cta_text' => 'Discover Our Capabilities',
-                'cta_url' => '#capabilities',
-                'background_image' => null,
+                'badge_text' => 'UPSTREAM ENERGY SOLUTIONS',
+                'title' => "Upstream\nEnergy Experts",
+                'subtitle' => 'Over 35 years of energy experience',
+                'highlight_heading' => 'Oil & Gas | CCS | UGS',
+                'highlight_text' => 'We provide clients with the Capability and Capacity to enable them to deliver upstream energy and storage projects globally.',
+                'cta_text' => 'About us',
+                'cta_url' => '#about',
+                'background_image' => 'https://images.unsplash.com/photo-1629792921074-1ec53065b222?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBlbmVyZ3klMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzY1MTM5NjE4fDA&ixlib=rb-4.0&q=80&w=1080',
                 'is_active' => true,
             ],
             [
@@ -29,7 +31,9 @@ class HeroSectionSeeder extends Seeder
                 'badge_text' => 'OUR WORK',
                 'title' => 'Selected Projects',
                 'subtitle' => 'Showcasing our most impactful energy engineering solutions',
-                'background_image' => null,
+                'cta_text' => null,
+                'cta_url' => null,
+                'background_image' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920',
                 'is_active' => true,
             ],
             [
@@ -37,13 +41,18 @@ class HeroSectionSeeder extends Seeder
                 'badge_text' => 'WHAT WE DO',
                 'title' => 'Our Services',
                 'subtitle' => 'Comprehensive energy engineering solutions tailored to your needs',
-                'background_image' => null,
+                'cta_text' => null,
+                'cta_url' => null,
+                'background_image' => 'https://images.unsplash.com/photo-1581094794329-c8112c4e5190?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920',
                 'is_active' => true,
             ],
         ];
 
         foreach ($heroes as $data) {
-            HeroSection::create($data);
+            HeroSection::updateOrCreate(
+                ['page' => $data['page']],
+                $data
+            );
         }
     }
 }

@@ -11,6 +11,8 @@ class HeroSection extends Model
         'badge_text',
         'title',
         'subtitle',
+        'highlight_heading',
+        'highlight_text',
         'cta_text',
         'cta_url',
         'background_image',

@@ -43,6 +43,14 @@ class HeroSectionResource extends Resource
                 Forms\Components\Textarea::make('subtitle')
                     ->columnSpanFull()
                     ->label('Hero Subtitle'),
+                Forms\Components\TextInput::make('highlight_heading')
+                    ->label('Highlight Heading')
+                    ->helperText('Optional highlight section heading (e.g., "Oil & Gas | CCS | UGS")')
+                    ->placeholder('e.g., Oil & Gas | CCS | UGS'),
+                Forms\Components\Textarea::make('highlight_text')
+                    ->columnSpanFull()
+                    ->label('Highlight Text')
+                    ->helperText('Optional highlight section description'),
                 Forms\Components\FileUpload::make('background_image')
                     ->image()
                     ->disk('public')
@@ -73,38 +81,60 @@ class HeroSectionResource extends Resource
                 Tables\Columns\TextColumn::make('page')
                     ->label('Page')
                     ->badge()
-                    ->formatStateUsing(fn (string $state): string => ucfirst($state))
-                    ->color(fn (string $state): string => match ($state) {
+                    ->formatStateUsing(fn (?string $state): string => $state ? ucfirst($state) : '-')
+                    ->color(fn (?string $state): string => match ($state) {
                         'home' => 'info',
                         'projects' => 'success',
                         'services' => 'warning',
                         default => 'gray',
                     })
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('badge_text')
                     ->label('Badge')
                     ->searchable()
-                    ->limit(30),
+                    ->limit(30)
+                    ->placeholder('-')
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Title')
                     ->searchable()
                     ->limit(50)
-                    ->sortable(),
+                    ->sortable()
+                    ->wrap(),
+                Tables\Columns\TextColumn::make('subtitle')
+                    ->label('Subtitle')
+                    ->limit(40)
+                    ->placeholder('-')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\IconColumn::make('is_active')
                     ->label('Active')
                     ->boolean()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Created')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Updated')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('page')
+                    ->options([
+                        'home' => 'Home',
+                        'projects' => 'Projects',
+                        'services' => 'Services',
+                    ])
+                    ->label('Page'),
+                Tables\Filters\TernaryFilter::make('is_active')
+                    ->label('Active Status')
+                    ->placeholder('All')
+                    ->trueLabel('Active only')
+                    ->falseLabel('Inactive only'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -114,7 +144,8 @@ class HeroSectionResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('id', 'desc');
     }
 
     public static function getRelations(): array
