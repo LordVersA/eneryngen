@@ -43,7 +43,7 @@
         <div class="section-inner">
             <div style="display: flex; flex-wrap: wrap; gap: 3rem; justify-content: center;">
                 @forelse($services as $service)
-                    <div class="capability-item group" style="flex: 0 0 calc(20% - 2.4rem); min-width: 150px;">
+                    <div class="capability-item group" style="flex: 0 0 calc(16.666% - 2.5rem); min-width: 150px;">
                         <div class="capability-icon">
                             {!! $service->icon_svg !!}
                             @if($service->badge_number)
