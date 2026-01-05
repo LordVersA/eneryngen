@@ -1,7 +1,5 @@
 @extends('layout.main')
 
-@section('title', 'OPC - Upstream Energy Experts')
-
 @section('content')
     <!-- HERO SECTION -->
     @if ($hero)

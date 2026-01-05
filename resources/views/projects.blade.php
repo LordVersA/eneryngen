@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', 'Our Projects - EnergyNgen')
+@section('title', 'Our Projects - ' . ($seo?->site_title ?? 'EnergyNgen'))
 
 @section('content')
     <div style="padding-top: 3rem;"></div>
@@ -16,7 +16,7 @@
             @endif
         </div>
         @endif
-        <div class="hero-overlay" style="position: absolute; inset: 0; z-index: 1;"></div>
+        <div class="hero-overlay" style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));"></div>
 
         <div class="hero-geometric" style="position: absolute; inset: 0; z-index: 2;">
             <div class="box-1"></div>
@@ -26,14 +26,14 @@
             <div class="dot-3"></div>
         </div>
 
-        <div class="hero-content" style="position: relative; z-index: 10;">
+        <div class="hero-content" style="position: relative; z-index: 10; color: white;">
             @if ($hero->badge_text)
             <div class="hero-badge">
                 <span>{{ $hero->badge_text }}</span>
             </div>
             @endif
-            <h1>{{ $hero->title }}</h1>
-            <p>{{ $hero->subtitle }}</p>
+            <h1 style="color: white;">{{ $hero->title }}</h1>
+            <p style="color: rgba(255, 255, 255, 0.9);">{{ $hero->subtitle }}</p>
         </div>
     </section>
     @endif
@@ -48,7 +48,15 @@
                 @forelse($projects as $project)
                     <div class="project-card group">
                         <div class="project-image">
-                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" />
+                            @if($project->image)
+                                <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" />
+                            @else
+                                <div class="project-placeholder">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
+                                </div>
+                            @endif
                             <div class="project-overlay"></div>
                             @if($project->project_number)
                                 <div class="project-number">{{ $project->project_number }}</div>

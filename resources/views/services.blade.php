@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', 'Our Services - EnergyNgen')
+@section('title', 'Our Services - ' . ($seo?->site_title ?? 'EnergyNgen'))
 
 @section('content')
     <div style="padding-top: 3rem;"></div>
@@ -16,7 +16,7 @@
             @endif
         </div>
         @endif
-        <div class="hero-overlay" style="position: absolute; inset: 0; z-index: 1;"></div>
+        <div class="hero-overlay" style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));"></div>
 
         <div class="hero-geometric" style="position: absolute; inset: 0; z-index: 2;">
             <div class="box-1"></div>
@@ -26,14 +26,14 @@
             <div class="dot-3"></div>
         </div>
 
-        <div class="hero-content" style="position: relative; z-index: 10;">
+        <div class="hero-content" style="position: relative; z-index: 10; color: white;">
             @if ($hero->badge_text)
             <div class="hero-badge">
                 <span>{{ $hero->badge_text }}</span>
             </div>
             @endif
-            <h1>{{ $hero->title }}</h1>
-            <p>{{ $hero->subtitle }}</p>
+            <h1 style="color: white;">{{ $hero->title }}</h1>
+            <p style="color: rgba(255, 255, 255, 0.9);">{{ $hero->subtitle }}</p>
         </div>
     </section>
     @endif
@@ -41,9 +41,9 @@
     <!-- SERVICES SECTION -->
     <section class="capabilities" id="services">
         <div class="section-inner">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div style="display: flex; flex-wrap: wrap; gap: 3rem; justify-content: center;">
                 @forelse($services as $service)
-                    <div class="capability-item group">
+                    <div class="capability-item group" style="flex: 0 0 calc(20% - 2.4rem); min-width: 150px;">
                         <div class="capability-icon">
                             {!! $service->icon_svg !!}
                             @if($service->badge_number)
